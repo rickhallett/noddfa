@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noddfa Retreat · 4–9 December 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8f6f3;
+            --bg-alt: #f0ede8;
+            --text: #2a2a28;
+            --text-muted: #6b6b68;
+            --accent: #8b7355;
+            --accent-light: #c4b49a;
+            --border: #d8d4cc;
+            --nav-bg: rgba(248, 246, 243, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        nav.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-title span {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            text-decoration: none;
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 120px 24px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero */
+        #hero {
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+        }
+
+        .hero-kanji {
+            font-size: 48px;
+            color: var(--accent-light);
+            margin-bottom: 24px;
+            letter-spacing: 0.3em;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.2s forwards;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-dates {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.8s forwards;
+        }
+
+        .hero-date {
+            text-align: center;
+        }
+
+        .hero-date-day {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .hero-date-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .hero-arrow {
+            font-size: 24px;
+            color: var(--border);
+            align-self: center;
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-kanji {
+            font-size: 14px;
+            color: var(--accent-light);
+            letter-spacing: 0.2em;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .section-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* Schedule Tables */
+        .schedule-block {
+            margin-bottom: 48px;
+        }
+
+        .schedule-block-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .schedule-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 24px;
+            padding: 12px 0;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .schedule-item:hover {
+            background: var(--bg-alt);
+            margin: 0 -16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+
+        .schedule-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .schedule-activity {
+            font-weight: 400;
+        }
+
+        .schedule-activity.highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .schedule-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        /* Travel Section */
+        .travel-leg {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .travel-leg:last-child {
+            border-bottom: none;
+        }
+
+        .travel-from, .travel-to {
+            font-size: 14px;
+        }
+
+        .travel-from {
+            text-align: right;
+        }
+
+        .travel-time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .travel-station {
+            font-weight: 500;
+            display: block;
+        }
+
+        .travel-arrow {
+            width: 60px;
+            height: 1px;
+            background: var(--border);
+            position: relative;
+        }
+
+        .travel-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -3px;
+            width: 7px;
+            height: 7px;
+            border-right: 1px solid var(--border);
+            border-top: 1px solid var(--border);
+            transform: rotate(45deg);
+        }
+
+        .travel-service {
+            text-align: center;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .info-card-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .info-card strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Day Navigation Pills */
+        .day-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 48px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 1s forwards;
+        }
+
+        .day-nav a {
+            font-size: 12px;
+            text-decoration: none;
+            color: var(--text-muted);
+            padding: 10px 18px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .day-nav a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .day-nav-day {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .day-nav-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .travel-leg {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 8px;
+            }
+
+            .travel-from {
+                text-align: center;
+            }
+
+            .travel-arrow {
+                width: 1px;
+                height: 30px;
+                margin: 0 auto;
+            }
+
+            .travel-arrow::after {
+                right: -3px;
+                top: auto;
+                bottom: 0;
+                transform: rotate(135deg);
+            }
+
+            .schedule-item {
+                grid-template-columns: 70px 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-title">Noddfa <span>· 修行</span></div>
+            <div class="nav-links">
+                <a href="#hero">Overview</a>
+                <a href="#outbound">Travel Out</a>
+                <a href="#thu">Thu</a>
+                <a href="#fri">Fri</a>
+                <a href="#sat">Sat</a>
+                <a href="#sun">Sun</a>
+                <a href="#mon">Mon</a>
+                <a href="#tue">Tue</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="section-inner">
+            <div class="hero-kanji">禅</div>
+            <h1>Breakthrough to Zen</h1>
+            <p class="hero-subtitle">Noddfa Spirituality Centre · Penmaenmawr</p>
+            
+            <div class="hero-dates">
+                <div class="hero-date">
+                    <div class="hero-date-day">4</div>
+                    <div class="hero-date-label">December</div>
+                </div>
+                <div class="hero-arrow">→</div>
+                <div class="hero-date">
+                    <div class="hero-date-day">9</div>
+                    <div class="hero-date-label">December</div>
+                </div>
+            </div>
+
+            <div class="day-nav">
+                <a href="#outbound">
+                    <span class="day-nav-day">→</span>
+                    <span class="day-nav-label">Travel</span>
+                </a>
+                <a href="#thu">
+                    <span class="day-nav-day">4</span>
+                    <span class="day-nav-label">BZR 1</span>
+                </a>
+                <a href="#fri">
+                    <span class="day-nav-day">5</span>
+                    <span class="day-nav-label">BZR 2</span>
+                </a>
+                <a href="#sat">
+                    <span class="day-nav-day">6</span>
+                    <span class="day-nav-label">BZR 3</span>
+                </a>
+                <a href="#sun">
+                    <span class="day-nav-day">7</span>
+                    <span class="day-nav-label">BZR 4</span>
+                </a>
+                <a href="#mon">
+                    <span class="day-nav-day">8</span>
+                    <span class="day-nav-label">Sesshin</span>
+                </a>
+                <a href="#tue">
+                    <span class="day-nav-day">9</span>
+                    <span class="day-nav-label">Return</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="outbound">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">旅</div>
+                <h2>Outbound Journey</h2>
+                <div class="section-date">Thursday 4 December · Morning</div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">06:45</span>
+                    <span class="travel-station">Swanage</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">Bus 50</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">08:00</span>
+                    <span class="travel-station">Bournemouth</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">08:30</span>
+                    <span class="travel-station">Bournemouth</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">SWR</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">10:20</span>
+                    <span class="travel-station">Waterloo</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">10:30</span>
+                    <span class="travel-station">Waterloo</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">Northern Line</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">10:50</span>
+                    <span class="travel-station">Euston</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">11:10</span>
+                    <span class="travel-station">Euston</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">Avanti</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">13:05</span>
+                    <span class="travel-station">Chester</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">13:23</span>
+                    <span class="travel-station">Chester</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">TfW</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">14:26</span>
+                    <span class="travel-station">Penmaenmawr</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">Request Stop</div>
+                    <p>Penmaenmawr is a <strong>request stop</strong>. Tell the conductor before arrival.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">Station Pickup</div>
+                    <p>Sisters offer collection. Call <strong>01492 623473</strong> or walk 15 min uphill.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="thu">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">初日</div>
+                <h2>BZR Day 1</h2>
+                <div class="section-date">Thursday 4 December</div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Afternoon · Arrival</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:45</div>
+                    <div class="schedule-activity">Arrive Noddfa, settle in</div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Evening · Opening</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">17:00</div>
+                    <div class="schedule-activity">Meet and greet
+                        <div class="schedule-note">Chatting in groups of 4</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">17:45</div>
+                    <div class="schedule-activity">Supper
+                        <div class="schedule-note">Not silent</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:30</div>
+                    <div class="schedule-activity highlight">Welcome Talk</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">19:45</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">21:00</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">22:00</div>
+                    <div class="schedule-activity">Retire
+                        <div class="schedule-note">Sleeping Contemplation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fri">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">二日目</div>
+                <h2>BZR Day 2</h2>
+                <div class="section-date">Friday 5 December</div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Morning</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">06:00</div>
+                    <div class="schedule-activity">Arise and dress</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">06:15</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:00</div>
+                    <div class="schedule-activity">Zen Yoga
+                        <div class="schedule-note">Standing, no mat needed</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:15</div>
+                    <div class="schedule-activity">Tea and fruit</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:30</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">08:15</div>
+                    <div class="schedule-activity">Breakfast</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">08:45</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">09:30</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">10:15</div>
+                    <div class="schedule-activity highlight">Walking Meditation</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">11:15</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Afternoon</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00</div>
+                    <div class="schedule-activity">Lunch</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:45</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">13:30</div>
+                    <div class="schedule-activity highlight">Dharma Talk</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:15</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:45</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">15:30</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">16:15</div>
+                    <div class="schedule-activity">Tea & snack</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">16:30</div>
+                    <div class="schedule-activity">Rest</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">17:15</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Evening</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:00</div>
+                    <div class="schedule-activity">Dinner</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:45</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">19:30</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">20:15</div>
+                    <div class="schedule-activity highlight">Walking Meditation</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">21:15</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">22:00</div>
+                    <div class="schedule-activity">Zen Yoga</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">22:15</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">23:00</div>
+                    <div class="schedule-activity">Retire
+                        <div class="schedule-note">Sleeping Contemplation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sat">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">三日目</div>
+                <h2>BZR Day 3</h2>
+                <div class="section-date">Saturday 6 December</div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Full Day Schedule</div>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Same schedule as Friday</p>
+                <div class="schedule-item">
+                    <div class="schedule-time">06:00</div>
+                    <div class="schedule-activity">Arise → Group Sanzen → Yoga → Breakfast</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">08:45</div>
+                    <div class="schedule-activity">Sanzen blocks + Walking Meditation</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00</div>
+                    <div class="schedule-activity">Lunch</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">13:30</div>
+                    <div class="schedule-activity highlight">Dharma Talk</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:15</div>
+                    <div class="schedule-activity">Zazen + Sanzen blocks + Rest</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:00</div>
+                    <div class="schedule-activity">Dinner</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:45</div>
+                    <div class="schedule-activity">Evening Sanzen + Walking + Yoga</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">23:00</div>
+                    <div class="schedule-activity">Retire</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sun">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">転</div>
+                <h2>BZR Closing + Solo Begins</h2>
+                <div class="section-date">Sunday 7 December</div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Morning · BZR Day 4</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">06:00</div>
+                    <div class="schedule-activity">Arise and dress</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">06:15</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:00</div>
+                    <div class="schedule-activity">Zen Yoga</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:15</div>
+                    <div class="schedule-activity">Tea and fruit</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:30</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">08:15</div>
+                    <div class="schedule-activity">Breakfast</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">08:45</div>
+                    <div class="schedule-activity">Group Sanzen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">09:30</div>
+                    <div class="schedule-activity">Walking Meditation</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">10:00</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">10:30</div>
+                    <div class="schedule-activity highlight">Integration Exercises</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">11:15</div>
+                    <div class="schedule-activity highlight">Closing Dharma Talk</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00</div>
+                    <div class="schedule-activity">Lunch & Farewells
+                        <div class="schedule-note">Chatting in groups of 4 · BZR ends</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Afternoon · Transition</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">13:00</div>
+                    <div class="schedule-activity">Rest, walk grounds</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">15:00</div>
+                    <div class="schedule-activity">Prepare space for solo practice</div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Evening · Solo Sesshin Begins</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">17:00</div>
+                    <div class="schedule-activity highlight">Enter Silence
+                        <div class="schedule-note">Solo sesshin begins</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">17:30</div>
+                    <div class="schedule-activity">Chanting / Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:30</div>
+                    <div class="schedule-activity">Supper
+                        <div class="schedule-note">Oryoki style</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">19:30</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">21:00</div>
+                    <div class="schedule-activity">Yaza
+                        <div class="schedule-note">Night sitting</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">22:00</div>
+                    <div class="schedule-activity">Retire</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mon">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">接心</div>
+                <h2>Solo Sesshin</h2>
+                <div class="section-date">Monday 8 December · Full Day</div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Early Morning</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">04:30</div>
+                    <div class="schedule-activity highlight">Rising</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">05:00</div>
+                    <div class="schedule-activity">Taiso
+                        <div class="schedule-note">Movement / stretching</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">05:30</div>
+                    <div class="schedule-activity">Chanting</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">06:00</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:00</div>
+                    <div class="schedule-activity">Breakfast
+                        <div class="schedule-note">Oryoki</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">08:00</div>
+                    <div class="schedule-activity">Samu
+                        <div class="schedule-note">Working meditation</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">09:30</div>
+                    <div class="schedule-activity">Tea</div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Morning · Afternoon</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">10:00</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">11:00</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:30</div>
+                    <div class="schedule-activity">Lunch
+                        <div class="schedule-note">Oryoki</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">13:30</div>
+                    <div class="schedule-activity">Zen Yoga / Energy work</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">14:30</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">15:30</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">16:00</div>
+                    <div class="schedule-activity">Tea</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">16:30</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">17:30</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Evening</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">18:30</div>
+                    <div class="schedule-activity">Supper
+                        <div class="schedule-note">Oryoki</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">19:30</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">20:30</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">21:00</div>
+                    <div class="schedule-activity highlight">Yaza
+                        <div class="schedule-note">Night sitting</div>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">22:00</div>
+                    <div class="schedule-activity">Retire</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tue">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">帰</div>
+                <h2>Return Journey</h2>
+                <div class="section-date">Tuesday 9 December</div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Early Morning · Final Practice</div>
+                <div class="schedule-item">
+                    <div class="schedule-time">04:30</div>
+                    <div class="schedule-activity">Rising</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">05:00</div>
+                    <div class="schedule-activity">Taiso</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">05:30</div>
+                    <div class="schedule-activity">Chanting</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">06:00</div>
+                    <div class="schedule-activity">Zazen</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:00</div>
+                    <div class="schedule-activity highlight">Sesshin Ends</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">07:15</div>
+                    <div class="schedule-activity">Breakfast</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">08:00</div>
+                    <div class="schedule-activity">Pack, gratitude with Sisters</div>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <div class="schedule-block-title">Return Travel</div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">09:24</span>
+                    <span class="travel-station">Penmaenmawr</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">TfW</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">10:25</span>
+                    <span class="travel-station">Chester</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">10:43</span>
+                    <span class="travel-station">Chester</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">Avanti</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">12:45</span>
+                    <span class="travel-station">Euston</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">12:50</span>
+                    <span class="travel-station">Euston</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">Northern Line</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">13:10</span>
+                    <span class="travel-station">Waterloo</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">13:30</span>
+                    <span class="travel-station">Waterloo</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">SWR</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">15:20</span>
+                    <span class="travel-station">Bournemouth</span>
+                </div>
+            </div>
+
+            <div class="travel-leg">
+                <div class="travel-from">
+                    <span class="travel-time">15:50</span>
+                    <span class="travel-station">Bournemouth</span>
+                </div>
+                <div>
+                    <div class="travel-arrow"></div>
+                    <div class="travel-service">Bus 50</div>
+                </div>
+                <div class="travel-to">
+                    <span class="travel-time">17:05</span>
+                    <span class="travel-station">Swanage</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">Request Stop</div>
+                    <p><strong>Signal from platform</strong> at Penmaenmawr for return train.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">Total Journey</div>
+                    <p><strong>~8 hours</strong> Noddfa to Swanage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Noddfa Spirituality Centre · <a href="tel:01492623473">01492 623473</a></p>
+        <p style="margin-top: 8px;">6 days · BZR + Solo Sesshin · December 2025</p>
+    </footer>
+
+    <script>
+        // Scroll-triggered fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        sections.forEach(section => navObserver.observe(section));
+
+        // Hide/show nav on scroll
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                navbar.classList.add('hidden');
+            } else {
+                navbar.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const sectionIds = ['hero', 'outbound', 'thu', 'fri', 'sat', 'sun', 'mon', 'tue'];
+            const currentSection = Array.from(sections).find(s => {
+                const rect = s.getBoundingClientRect();
+                return rect.top <= 100 && rect.bottom > 100;
+            });
+            
+            const currentIndex = sectionIds.indexOf(currentSection?.id || 'hero');
+            
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                const nextIndex = Math.min(currentIndex + 1, sectionIds.length - 1);
+                document.getElementById(sectionIds[nextIndex]).scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prevIndex = Math.max(currentIndex - 1, 0);
+                document.getElementById(sectionIds[prevIndex]).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

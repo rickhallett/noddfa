@@ -334,10 +334,9 @@
         }
 
         .info-card {
-            background: white;
+            background: var(--bg-alt);
             border-radius: 12px;
             padding: 24px;
-            border: 1px solid var(--border);
         }
 
         .info-card-title {
@@ -387,6 +386,39 @@
         .day-nav a:hover {
             border-color: var(--accent);
             color: var(--accent);
+        }
+
+        /* Jump to current button */
+        .jump-to-current {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 1.2s forwards;
+        }
+
+        .jump-to-current button {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--bg);
+            background: var(--accent);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .jump-to-current button:hover {
+            background: var(--text);
+        }
+
+        .jump-to-current button:disabled {
+            background: var(--border);
+            color: var(--text-muted);
+            cursor: not-allowed;
         }
 
         .day-nav-day {
@@ -482,6 +514,7 @@
         /* Schedule item badge positioning */
         .schedule-item {
             position: relative;
+            padding-right: 90px;
         }
 
         .schedule-item .status-badge {
@@ -489,6 +522,13 @@
             top: 50%;
             right: 0;
             transform: translateY(-50%);
+        }
+
+        /* Travel leg badge positioning - moved to after arrow */
+        .travel-leg .status-badge {
+            position: absolute;
+            top: 8px;
+            right: 0;
         }
 
         /* Responsive */
@@ -501,6 +541,13 @@
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 8px;
+                padding-top: 32px;
+            }
+
+            .travel-leg .status-badge {
+                top: 4px;
+                right: 50%;
+                transform: translateX(50%);
             }
 
             .travel-from {
@@ -523,6 +570,12 @@
             .schedule-item {
                 grid-template-columns: 70px 1fr;
                 gap: 16px;
+                padding-right: 75px;
+            }
+
+            .schedule-item .status-badge {
+                font-size: 9px;
+                padding: 3px 8px;
             }
         }
 
@@ -549,14 +602,13 @@
         }
 
         .venue-card {
-            background: white;
+            background: var(--bg-alt);
             border-radius: 12px;
             padding: 20px;
-            border: 1px solid var(--border);
         }
 
         .venue-card.featured {
-            border-left: 3px solid var(--accent);
+            background: linear-gradient(90deg, rgba(139, 115, 85, 0.08) 0%, var(--bg-alt) 100%);
         }
 
         .venue-header {
@@ -667,10 +719,9 @@
         }
 
         .tip-box {
-            background: var(--bg-alt);
+            background: linear-gradient(90deg, rgba(139, 115, 85, 0.06) 0%, var(--bg-alt) 100%);
             border-radius: 12px;
             padding: 20px;
-            border-left: 3px solid var(--accent);
             margin-top: 16px;
         }
 
@@ -784,9 +835,13 @@
                     <span class="day-nav-label">Return</span>
                 </a>
                 <a href="#local">
-                    <span class="day-nav-day">📍</span>
+                    <span class="day-nav-day">i</span>
                     <span class="day-nav-label">Local</span>
                 </a>
+            </div>
+
+            <div class="jump-to-current">
+                <button id="jumpToCurrentBtn" type="button">Jump to Current</button>
             </div>
         </div>
     </section>
@@ -1947,6 +2002,71 @@
             });
 
             console.log('[EventStatus] Initialization complete');
+        })();
+
+        // Jump to Current Event functionality
+        (function initJumpToCurrent() {
+            const jumpBtn = document.getElementById('jumpToCurrentBtn');
+            if (!jumpBtn) {
+                console.warn('[JumpToCurrent] Button not found');
+                return;
+            }
+
+            console.log('[JumpToCurrent] Initializing jump to current button');
+
+            function findActiveEvent() {
+                const activeEvent = document.querySelector('[data-state="active"]');
+                if (activeEvent) {
+                    console.log('[JumpToCurrent] Found active event');
+                    return activeEvent;
+                }
+
+                // If no active event, find the next upcoming event
+                const upcomingEvents = document.querySelectorAll('[data-state="upcoming"]');
+                if (upcomingEvents.length > 0) {
+                    console.log('[JumpToCurrent] No active event, using first upcoming');
+                    return upcomingEvents[0];
+                }
+
+                // If all events completed, return null
+                console.log('[JumpToCurrent] No active or upcoming events found');
+                return null;
+            }
+
+            function updateButtonState() {
+                const target = findActiveEvent();
+                if (target) {
+                    jumpBtn.disabled = false;
+                    const isActive = target.dataset.state === 'active';
+                    jumpBtn.textContent = isActive ? 'Jump to Active' : 'Jump to Next';
+                } else {
+                    jumpBtn.disabled = true;
+                    jumpBtn.textContent = 'All Complete';
+                }
+            }
+
+            jumpBtn.addEventListener('click', function() {
+                const target = findActiveEvent();
+                if (target) {
+                    console.log('[JumpToCurrent] Scrolling to event');
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Brief highlight effect
+                    target.style.transition = 'background 0.3s ease';
+                    target.style.background = 'rgba(139, 115, 85, 0.1)';
+                    setTimeout(function() {
+                        target.style.background = '';
+                    }, 1500);
+                }
+            });
+
+            // Initial state
+            updateButtonState();
+
+            // Update button state periodically (after status updates)
+            setInterval(updateButtonState, 31000);
+
+            console.log('[JumpToCurrent] Initialization complete');
         })();
     </script>
 </body>

@@ -425,6 +425,72 @@
             transform: translateY(0);
         }
 
+        /* Status Badges */
+        .status-badge {
+            --status-color: var(--text-muted);
+            --status-bg: transparent;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            color: var(--status-color);
+            background: var(--status-bg);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        /* State-driven styling via data-state attribute */
+        [data-state="upcoming"] .status-badge {
+            --status-color: var(--text-muted);
+            --status-bg: var(--bg-alt);
+        }
+
+        [data-state="active"] .status-badge {
+            --status-color: #fff;
+            --status-bg: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        [data-state="completed"] .status-badge {
+            --status-color: #5a8f5a;
+            --status-bg: rgba(90, 143, 90, 0.1);
+        }
+
+        /* Pulse animation for active state */
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(139, 115, 85, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(139, 115, 85, 0); }
+        }
+
+        /* Travel leg badge positioning */
+        .travel-leg {
+            position: relative;
+        }
+
+        .travel-leg .status-badge {
+            position: absolute;
+            top: 8px;
+            right: 0;
+        }
+
+        /* Schedule item badge positioning */
+        .schedule-item {
+            position: relative;
+        }
+
+        .schedule-item .status-badge {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
         /* Responsive */
         @media (max-width: 640px) {
             .nav-links {
@@ -733,7 +799,8 @@
                 <div class="section-date">Thursday 4 December · Morning</div>
             </div>
 
-            <div class="travel-leg">
+            <div class="travel-leg" data-start="2025-12-04T08:00:00" data-end="2025-12-04T09:15:00">
+                <span class="status-badge">Upcoming</span>
                 <div class="travel-from">
                     <span class="travel-time">08:00</span>
                     <span class="travel-station">Swanage</span>
@@ -748,7 +815,8 @@
                 </div>
             </div>
 
-            <div class="travel-leg">
+            <div class="travel-leg" data-start="2025-12-04T09:45:00" data-end="2025-12-04T13:18:00">
+                <span class="status-badge">Upcoming</span>
                 <div class="travel-from">
                     <span class="travel-time">09:45</span>
                     <span class="travel-station">Bournemouth</span>
@@ -763,7 +831,8 @@
                 </div>
             </div>
 
-            <div class="travel-leg">
+            <div class="travel-leg" data-start="2025-12-04T13:28:00" data-end="2025-12-04T16:23:00">
+                <span class="status-badge">Upcoming</span>
                 <div class="travel-from">
                     <span class="travel-time">13:28</span>
                     <span class="travel-station">Wolverhampton</span>
@@ -805,43 +874,50 @@
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Afternoon · Arrival</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-04T16:45:00" data-end="2025-12-04T17:00:00">
                     <div class="schedule-time">16:45</div>
                     <div class="schedule-activity">Arrive Noddfa, settle in</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Evening · Opening</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-04T17:00:00" data-end="2025-12-04T17:45:00">
                     <div class="schedule-time">17:00</div>
                     <div class="schedule-activity">Meet and greet
                         <div class="schedule-note">Chatting in groups of 4</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-04T17:45:00" data-end="2025-12-04T18:30:00">
                     <div class="schedule-time">17:45</div>
                     <div class="schedule-activity">Supper
                         <div class="schedule-note">Not silent</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-04T18:30:00" data-end="2025-12-04T19:45:00">
                     <div class="schedule-time">18:30</div>
                     <div class="schedule-activity highlight">Welcome Talk</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-04T19:45:00" data-end="2025-12-04T21:00:00">
                     <div class="schedule-time">19:45</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-04T21:00:00" data-end="2025-12-04T22:00:00">
                     <div class="schedule-time">21:00</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-04T22:00:00" data-end="2025-12-05T06:00:00">
                     <div class="schedule-time">22:00</div>
                     <div class="schedule-activity">Retire
                         <div class="schedule-note">Sleeping Contemplation</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
         </div>
@@ -857,125 +933,152 @@
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Morning</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T06:00:00" data-end="2025-12-05T06:15:00">
                     <div class="schedule-time">06:00</div>
                     <div class="schedule-activity">Arise and dress</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T06:15:00" data-end="2025-12-05T07:00:00">
                     <div class="schedule-time">06:15</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T07:00:00" data-end="2025-12-05T07:15:00">
                     <div class="schedule-time">07:00</div>
                     <div class="schedule-activity">Zen Yoga
                         <div class="schedule-note">Standing, no mat needed</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T07:15:00" data-end="2025-12-05T07:30:00">
                     <div class="schedule-time">07:15</div>
                     <div class="schedule-activity">Tea and fruit</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T07:30:00" data-end="2025-12-05T08:15:00">
                     <div class="schedule-time">07:30</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T08:15:00" data-end="2025-12-05T08:45:00">
                     <div class="schedule-time">08:15</div>
                     <div class="schedule-activity">Breakfast</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T08:45:00" data-end="2025-12-05T09:30:00">
                     <div class="schedule-time">08:45</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T09:30:00" data-end="2025-12-05T10:15:00">
                     <div class="schedule-time">09:30</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T10:15:00" data-end="2025-12-05T11:15:00">
                     <div class="schedule-time">10:15</div>
                     <div class="schedule-activity highlight">Walking Meditation</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T11:15:00" data-end="2025-12-05T12:00:00">
                     <div class="schedule-time">11:15</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Afternoon</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T12:00:00" data-end="2025-12-05T12:45:00">
                     <div class="schedule-time">12:00</div>
                     <div class="schedule-activity">Lunch</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T12:45:00" data-end="2025-12-05T13:30:00">
                     <div class="schedule-time">12:45</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T13:30:00" data-end="2025-12-05T14:15:00">
                     <div class="schedule-time">13:30</div>
                     <div class="schedule-activity highlight">Dharma Talk</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T14:15:00" data-end="2025-12-05T14:45:00">
                     <div class="schedule-time">14:15</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T14:45:00" data-end="2025-12-05T15:30:00">
                     <div class="schedule-time">14:45</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T15:30:00" data-end="2025-12-05T16:15:00">
                     <div class="schedule-time">15:30</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T16:15:00" data-end="2025-12-05T16:30:00">
                     <div class="schedule-time">16:15</div>
                     <div class="schedule-activity">Tea & snack</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T16:30:00" data-end="2025-12-05T17:15:00">
                     <div class="schedule-time">16:30</div>
                     <div class="schedule-activity">Rest</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T17:15:00" data-end="2025-12-05T18:00:00">
                     <div class="schedule-time">17:15</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Evening</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T18:00:00" data-end="2025-12-05T18:45:00">
                     <div class="schedule-time">18:00</div>
                     <div class="schedule-activity">Dinner</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T18:45:00" data-end="2025-12-05T19:30:00">
                     <div class="schedule-time">18:45</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T19:30:00" data-end="2025-12-05T20:15:00">
                     <div class="schedule-time">19:30</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T20:15:00" data-end="2025-12-05T21:15:00">
                     <div class="schedule-time">20:15</div>
                     <div class="schedule-activity highlight">Walking Meditation</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T21:15:00" data-end="2025-12-05T22:00:00">
                     <div class="schedule-time">21:15</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T22:00:00" data-end="2025-12-05T22:15:00">
                     <div class="schedule-time">22:00</div>
                     <div class="schedule-activity">Zen Yoga</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T22:15:00" data-end="2025-12-05T23:00:00">
                     <div class="schedule-time">22:15</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-05T23:00:00" data-end="2025-12-06T06:00:00">
                     <div class="schedule-time">23:00</div>
                     <div class="schedule-activity">Retire
                         <div class="schedule-note">Sleeping Contemplation</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
         </div>
@@ -992,37 +1095,45 @@
             <div class="schedule-block">
                 <div class="schedule-block-title">Full Day Schedule</div>
                 <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Same schedule as Friday</p>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T06:00:00" data-end="2025-12-06T08:45:00">
                     <div class="schedule-time">06:00</div>
                     <div class="schedule-activity">Arise → Group Sanzen → Yoga → Breakfast</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T08:45:00" data-end="2025-12-06T12:00:00">
                     <div class="schedule-time">08:45</div>
                     <div class="schedule-activity">Sanzen blocks + Walking Meditation</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T12:00:00" data-end="2025-12-06T13:30:00">
                     <div class="schedule-time">12:00</div>
                     <div class="schedule-activity">Lunch</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T13:30:00" data-end="2025-12-06T14:15:00">
                     <div class="schedule-time">13:30</div>
                     <div class="schedule-activity highlight">Dharma Talk</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T14:15:00" data-end="2025-12-06T18:00:00">
                     <div class="schedule-time">14:15</div>
                     <div class="schedule-activity">Zazen + Sanzen blocks + Rest</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T18:00:00" data-end="2025-12-06T18:45:00">
                     <div class="schedule-time">18:00</div>
                     <div class="schedule-activity">Dinner</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T18:45:00" data-end="2025-12-06T23:00:00">
                     <div class="schedule-time">18:45</div>
                     <div class="schedule-activity">Evening Sanzen + Walking + Yoga</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-06T23:00:00" data-end="2025-12-07T06:00:00">
                     <div class="schedule-time">23:00</div>
                     <div class="schedule-activity">Retire</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
         </div>
@@ -1038,101 +1149,121 @@
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Morning · BZR Day 4</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T06:00:00" data-end="2025-12-07T06:15:00">
                     <div class="schedule-time">06:00</div>
                     <div class="schedule-activity">Arise and dress</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T06:15:00" data-end="2025-12-07T07:00:00">
                     <div class="schedule-time">06:15</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T07:00:00" data-end="2025-12-07T07:15:00">
                     <div class="schedule-time">07:00</div>
                     <div class="schedule-activity">Zen Yoga</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T07:15:00" data-end="2025-12-07T07:30:00">
                     <div class="schedule-time">07:15</div>
                     <div class="schedule-activity">Tea and fruit</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T07:30:00" data-end="2025-12-07T08:15:00">
                     <div class="schedule-time">07:30</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T08:15:00" data-end="2025-12-07T08:45:00">
                     <div class="schedule-time">08:15</div>
                     <div class="schedule-activity">Breakfast</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T08:45:00" data-end="2025-12-07T09:30:00">
                     <div class="schedule-time">08:45</div>
                     <div class="schedule-activity">Group Sanzen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T09:30:00" data-end="2025-12-07T10:00:00">
                     <div class="schedule-time">09:30</div>
                     <div class="schedule-activity">Walking Meditation</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T10:00:00" data-end="2025-12-07T10:30:00">
                     <div class="schedule-time">10:00</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T10:30:00" data-end="2025-12-07T11:15:00">
                     <div class="schedule-time">10:30</div>
                     <div class="schedule-activity highlight">Integration Exercises</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T11:15:00" data-end="2025-12-07T12:00:00">
                     <div class="schedule-time">11:15</div>
                     <div class="schedule-activity highlight">Closing Dharma Talk</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T12:00:00" data-end="2025-12-07T13:00:00">
                     <div class="schedule-time">12:00</div>
                     <div class="schedule-activity">Lunch & Farewells
                         <div class="schedule-note">Chatting in groups of 4 · BZR ends</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Afternoon · Transition</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T13:00:00" data-end="2025-12-07T15:00:00">
                     <div class="schedule-time">13:00</div>
                     <div class="schedule-activity">Rest, walk grounds</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T15:00:00" data-end="2025-12-07T17:00:00">
                     <div class="schedule-time">15:00</div>
                     <div class="schedule-activity">Prepare space for solo practice</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Evening · Solo Sesshin Begins</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T17:00:00" data-end="2025-12-07T17:30:00">
                     <div class="schedule-time">17:00</div>
                     <div class="schedule-activity highlight">Enter Silence
                         <div class="schedule-note">Solo sesshin begins</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T17:30:00" data-end="2025-12-07T18:30:00">
                     <div class="schedule-time">17:30</div>
                     <div class="schedule-activity">Chanting / Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T18:30:00" data-end="2025-12-07T19:30:00">
                     <div class="schedule-time">18:30</div>
                     <div class="schedule-activity">Supper
                         <div class="schedule-note">Oryoki style</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T19:30:00" data-end="2025-12-07T21:00:00">
                     <div class="schedule-time">19:30</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T21:00:00" data-end="2025-12-07T22:00:00">
                     <div class="schedule-time">21:00</div>
                     <div class="schedule-activity">Yaza
                         <div class="schedule-note">Night sitting</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-07T22:00:00" data-end="2025-12-08T04:30:00">
                     <div class="schedule-time">22:00</div>
                     <div class="schedule-activity">Retire</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
         </div>
@@ -1148,109 +1279,130 @@
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Early Morning</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T04:30:00" data-end="2025-12-08T05:00:00">
                     <div class="schedule-time">04:30</div>
                     <div class="schedule-activity highlight">Rising</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T05:00:00" data-end="2025-12-08T05:30:00">
                     <div class="schedule-time">05:00</div>
                     <div class="schedule-activity">Taiso
                         <div class="schedule-note">Movement / stretching</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T05:30:00" data-end="2025-12-08T06:00:00">
                     <div class="schedule-time">05:30</div>
                     <div class="schedule-activity">Chanting</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T06:00:00" data-end="2025-12-08T07:00:00">
                     <div class="schedule-time">06:00</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T07:00:00" data-end="2025-12-08T08:00:00">
                     <div class="schedule-time">07:00</div>
                     <div class="schedule-activity">Breakfast
                         <div class="schedule-note">Oryoki</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T08:00:00" data-end="2025-12-08T09:30:00">
                     <div class="schedule-time">08:00</div>
                     <div class="schedule-activity">Samu
                         <div class="schedule-note">Working meditation</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T09:30:00" data-end="2025-12-08T10:00:00">
                     <div class="schedule-time">09:30</div>
                     <div class="schedule-activity">Tea</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Morning · Afternoon</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T10:00:00" data-end="2025-12-08T11:00:00">
                     <div class="schedule-time">10:00</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T11:00:00" data-end="2025-12-08T12:30:00">
                     <div class="schedule-time">11:00</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T12:30:00" data-end="2025-12-08T13:30:00">
                     <div class="schedule-time">12:30</div>
                     <div class="schedule-activity">Lunch
                         <div class="schedule-note">Oryoki</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T13:30:00" data-end="2025-12-08T14:30:00">
                     <div class="schedule-time">13:30</div>
                     <div class="schedule-activity">Zen Yoga / Energy work</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T14:30:00" data-end="2025-12-08T15:30:00">
                     <div class="schedule-time">14:30</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T15:30:00" data-end="2025-12-08T16:00:00">
                     <div class="schedule-time">15:30</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T16:00:00" data-end="2025-12-08T16:30:00">
                     <div class="schedule-time">16:00</div>
                     <div class="schedule-activity">Tea</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T16:30:00" data-end="2025-12-08T17:30:00">
                     <div class="schedule-time">16:30</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T17:30:00" data-end="2025-12-08T18:30:00">
                     <div class="schedule-time">17:30</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Evening</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T18:30:00" data-end="2025-12-08T19:30:00">
                     <div class="schedule-time">18:30</div>
                     <div class="schedule-activity">Supper
                         <div class="schedule-note">Oryoki</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T19:30:00" data-end="2025-12-08T20:30:00">
                     <div class="schedule-time">19:30</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T20:30:00" data-end="2025-12-08T21:00:00">
                     <div class="schedule-time">20:30</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T21:00:00" data-end="2025-12-08T22:00:00">
                     <div class="schedule-time">21:00</div>
                     <div class="schedule-activity highlight">Yaza
                         <div class="schedule-note">Night sitting</div>
                     </div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-08T22:00:00" data-end="2025-12-09T04:30:00">
                     <div class="schedule-time">22:00</div>
                     <div class="schedule-activity">Retire</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
         </div>
@@ -1266,33 +1418,40 @@
 
             <div class="schedule-block">
                 <div class="schedule-block-title">Early Morning · Final Practice</div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-09T04:30:00" data-end="2025-12-09T05:00:00">
                     <div class="schedule-time">04:30</div>
                     <div class="schedule-activity">Rising</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-09T05:00:00" data-end="2025-12-09T05:30:00">
                     <div class="schedule-time">05:00</div>
                     <div class="schedule-activity">Taiso</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-09T05:30:00" data-end="2025-12-09T06:00:00">
                     <div class="schedule-time">05:30</div>
                     <div class="schedule-activity">Chanting</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-09T06:00:00" data-end="2025-12-09T07:00:00">
                     <div class="schedule-time">06:00</div>
                     <div class="schedule-activity">Zazen</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-09T07:00:00" data-end="2025-12-09T07:15:00">
                     <div class="schedule-time">07:00</div>
                     <div class="schedule-activity highlight">Sesshin Ends</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-09T07:15:00" data-end="2025-12-09T08:00:00">
                     <div class="schedule-time">07:15</div>
                     <div class="schedule-activity">Breakfast</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
-                <div class="schedule-item">
+                <div class="schedule-item" data-start="2025-12-09T08:00:00" data-end="2025-12-09T10:16:00">
                     <div class="schedule-time">08:00</div>
                     <div class="schedule-activity">Pack, gratitude with Sisters</div>
+                    <span class="status-badge">Upcoming</span>
                 </div>
             </div>
 
@@ -1300,7 +1459,8 @@
                 <div class="schedule-block-title">Return Travel</div>
             </div>
 
-            <div class="travel-leg">
+            <div class="travel-leg" data-start="2025-12-09T10:16:00" data-end="2025-12-09T13:06:00">
+                <span class="status-badge">Upcoming</span>
                 <div class="travel-from">
                     <span class="travel-time">10:16</span>
                     <span class="travel-station">Penmaenmawr</span>
@@ -1315,7 +1475,8 @@
                 </div>
             </div>
 
-            <div class="travel-leg">
+            <div class="travel-leg" data-start="2025-12-09T13:28:00" data-end="2025-12-09T17:21:00">
+                <span class="status-badge">Upcoming</span>
                 <div class="travel-from">
                     <span class="travel-time">13:28</span>
                     <span class="travel-station">Wolverhampton</span>
@@ -1330,7 +1491,8 @@
                 </div>
             </div>
 
-            <div class="travel-leg">
+            <div class="travel-leg" data-start="2025-12-09T17:50:00" data-end="2025-12-09T19:05:00">
+                <span class="status-badge">Upcoming</span>
                 <div class="travel-from">
                     <span class="travel-time">17:50</span>
                     <span class="travel-station">Bournemouth</span>
@@ -1631,6 +1793,161 @@
                 document.getElementById(sectionIds[prevIndex]).scrollIntoView({ behavior: 'smooth' });
             }
         });
+
+        // Event Status Badge Manager
+        (function initEventStatusBadges() {
+            console.log('[EventStatus] Initializing event status badge system');
+
+            const UPDATE_INTERVAL_MS = 30000; // 30 seconds
+            const events = document.querySelectorAll('[data-start]');
+
+            console.log('[EventStatus] Found ' + events.length + ' events with data-start attributes');
+
+            if (events.length === 0) {
+                console.warn('[EventStatus] No events found - status badges will not be displayed');
+                return;
+            }
+
+            /**
+             * Get current time in BST/GMT (Europe/London timezone)
+             * @returns {Date} Current time adjusted for UK timezone
+             */
+            function getBSTNow() {
+                const now = new Date();
+                // Use Intl API to get UK time
+                const ukTimeStr = now.toLocaleString('en-GB', {
+                    timeZone: 'Europe/London',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+
+                // Parse the UK time string back to a Date object
+                // Format: DD/MM/YYYY, HH:MM:SS
+                const [datePart, timePart] = ukTimeStr.split(', ');
+                const [day, month, year] = datePart.split('/');
+                const [hour, minute, second] = timePart.split(':');
+
+                const bstDate = new Date(year, month - 1, day, hour, minute, second);
+
+                console.log('[EventStatus] Current BST time: ' + bstDate.toISOString());
+                return bstDate;
+            }
+
+            /**
+             * Determine the status of an event based on current time
+             * @param {Date} start - Event start time
+             * @param {Date} end - Event end time
+             * @param {Date} now - Current time
+             * @returns {string} Status: 'upcoming', 'active', or 'completed'
+             */
+            function getEventStatus(start, end, now) {
+                if (now < start) {
+                    return 'upcoming';
+                } else if (now >= start && now <= end) {
+                    return 'active';
+                } else {
+                    return 'completed';
+                }
+            }
+
+            /**
+             * Get human-readable label for status
+             * @param {string} status - Status string
+             * @returns {string} Display label
+             */
+            function getStatusLabel(status) {
+                switch (status) {
+                    case 'upcoming': return 'Upcoming';
+                    case 'active': return 'Active';
+                    case 'completed': return 'Completed';
+                    default: return status;
+                }
+            }
+
+            /**
+             * Update all event statuses
+             */
+            function updateAllStatuses() {
+                const now = getBSTNow();
+                let activeCount = 0;
+                let completedCount = 0;
+                let upcomingCount = 0;
+
+                events.forEach((el, index) => {
+                    const startStr = el.dataset.start;
+                    const endStr = el.dataset.end;
+
+                    if (!startStr || !endStr) {
+                        console.warn('[EventStatus] Event ' + index + ' missing data-start or data-end attribute');
+                        return;
+                    }
+
+                    const start = new Date(startStr);
+                    const end = new Date(endStr);
+
+                    // Validate dates
+                    if (isNaN(start.getTime())) {
+                        console.error('[EventStatus] Invalid start date for event ' + index + ': ' + startStr);
+                        return;
+                    }
+                    if (isNaN(end.getTime())) {
+                        console.error('[EventStatus] Invalid end date for event ' + index + ': ' + endStr);
+                        return;
+                    }
+
+                    const prevState = el.dataset.state;
+                    const newState = getEventStatus(start, end, now);
+
+                    // Update counters
+                    if (newState === 'active') activeCount++;
+                    else if (newState === 'completed') completedCount++;
+                    else upcomingCount++;
+
+                    // Only update DOM if state changed
+                    if (prevState !== newState) {
+                        console.log('[EventStatus] State change for event ' + index + ': ' + (prevState || 'none') + ' -> ' + newState);
+
+                        el.dataset.state = newState;
+
+                        const badge = el.querySelector('.status-badge');
+                        if (badge) {
+                            badge.textContent = getStatusLabel(newState);
+                            badge.className = 'status-badge ' + newState;
+                        } else {
+                            console.warn('[EventStatus] No .status-badge element found for event ' + index);
+                        }
+                    }
+                });
+
+                console.log('[EventStatus] Status summary - Active: ' + activeCount + ', Completed: ' + completedCount + ', Upcoming: ' + upcomingCount);
+            }
+
+            // Initial update
+            console.log('[EventStatus] Running initial status update');
+            updateAllStatuses();
+
+            // Set up interval for updates
+            console.log('[EventStatus] Setting up update interval: ' + UPDATE_INTERVAL_MS + 'ms');
+            setInterval(function() {
+                console.log('[EventStatus] Interval tick - updating statuses');
+                updateAllStatuses();
+            }, UPDATE_INTERVAL_MS);
+
+            // Also update when page becomes visible (user returns to tab)
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    console.log('[EventStatus] Page became visible - updating statuses');
+                    updateAllStatuses();
+                }
+            });
+
+            console.log('[EventStatus] Initialization complete');
+        })();
     </script>
 </body>
 </html>

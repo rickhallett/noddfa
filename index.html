@@ -473,6 +473,183 @@
             color: var(--accent);
             text-decoration: none;
         }
+
+        /* Local Info Section */
+        .venue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .venue-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .venue-card.featured {
+            border-left: 3px solid var(--accent);
+        }
+
+        .venue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .venue-name {
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .venue-star {
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        .venue-type {
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .venue-details {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .venue-phone {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .venue-phone a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .venue-phone a:hover {
+            color: var(--accent);
+        }
+
+        .venue-hours {
+            font-size: 12px;
+            color: var(--accent);
+            margin-top: 6px;
+        }
+
+        .venue-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .walk-table {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .walk-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .walk-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .walk-table td:first-child {
+            color: var(--text);
+        }
+
+        .walk-table td:nth-child(2) {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .walk-table td:last-child {
+            text-align: right;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .local-subsection {
+            margin-top: 48px;
+        }
+
+        .local-subsection-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tip-box {
+            background: var(--bg-alt);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 3px solid var(--accent);
+            margin-top: 16px;
+        }
+
+        .tip-box-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .tip-box p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .tip-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .contact-block p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .contact-block strong {
+            color: var(--text);
+        }
+
+        @media (max-width: 640px) {
+            .venue-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -488,6 +665,7 @@
                 <a href="#sun">Sun</a>
                 <a href="#mon">Mon</a>
                 <a href="#tue">Tue</a>
+                <a href="#local">Local</a>
             </div>
         </div>
     </nav>
@@ -538,6 +716,10 @@
                 <a href="#tue">
                     <span class="day-nav-day">9</span>
                     <span class="day-nav-label">Return</span>
+                </a>
+                <a href="#local">
+                    <span class="day-nav-day">📍</span>
+                    <span class="day-nav-label">Local</span>
                 </a>
             </div>
         </div>
@@ -1180,6 +1362,194 @@
         </div>
     </section>
 
+    <section id="local">
+        <div class="section-inner fade-in">
+            <div class="section-header">
+                <div class="section-kanji">町</div>
+                <h2>Local Area Guide</h2>
+                <div class="section-date">Penmaenmawr · LL34</div>
+            </div>
+
+            <table class="walk-table">
+                <tr>
+                    <td>Town centre / shops</td>
+                    <td>10–15 min</td>
+                    <td>Downhill</td>
+                </tr>
+                <tr>
+                    <td>Co-op / Spar</td>
+                    <td>10–15 min</td>
+                    <td>Bangor Road</td>
+                </tr>
+                <tr>
+                    <td>Beach / promenade</td>
+                    <td>10 min</td>
+                    <td>Via town</td>
+                </tr>
+                <tr>
+                    <td>Train station</td>
+                    <td>15 min</td>
+                    <td>Downhill</td>
+                </tr>
+                <tr>
+                    <td>Return to Noddfa</td>
+                    <td>15–20 min</td>
+                    <td>Uphill</td>
+                </tr>
+            </table>
+
+            <div class="local-subsection">
+                <div class="local-subsection-title">Groceries & Supplies</div>
+                <div class="venue-grid">
+                    <div class="venue-card">
+                        <div class="venue-name">Co-op</div>
+                        <div class="venue-details">Bangor Road, LL34 6AF</div>
+                        <div class="venue-hours">Open 7am–11pm daily</div>
+                        <div class="venue-phone"><a href="tel:01492623518">01492 623518</a></div>
+                        <div class="venue-note">Best selection, card payment, hot food to go</div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Spar</div>
+                        <div class="venue-details">Bangor Road (Ffordd Bangor), LL34 6DA</div>
+                        <div class="venue-note">Convenience essentials</div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Village Stores</div>
+                        <div class="venue-details">Pant yr Afon, LL34 6BY</div>
+                        <div class="venue-note">Local shop, friendly service, delivers locally</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="local-subsection">
+                <div class="local-subsection-title">Cafes & Lunch</div>
+                <div class="venue-grid">
+                    <div class="venue-card">
+                        <div class="venue-name">The Beach Cafe</div>
+                        <div class="venue-type">British cafe · Promenade</div>
+                        <div class="venue-details">Beach Road, on the prom</div>
+                        <div class="venue-note">Soup, sandwiches, fry-ups, homemade cakes. <strong>Cash only.</strong> Dog-friendly. Great views.</div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Penmaenmawr Bakery & Tea Rooms</div>
+                        <div class="venue-type">Bakery · Cafe</div>
+                        <div class="venue-details">2 Oxford Arcade, Pant yr Afon, LL34 6AE</div>
+                        <div class="venue-phone"><a href="tel:01492623133">01492 623133</a></div>
+                        <div class="venue-note">Fresh bread, sandwiches, cakes. Good for quick lunch.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="local-subsection">
+                <div class="local-subsection-title">Restaurants</div>
+                <div class="venue-grid">
+                    <div class="venue-card featured">
+                        <div class="venue-header">
+                            <div class="venue-name">Ti Amo Ristorante Italiano</div>
+                            <div class="venue-star">★</div>
+                        </div>
+                        <div class="venue-type">Italian · Family-run</div>
+                        <div class="venue-details">Pant yr Afon, LL34 6AD</div>
+                        <div class="venue-phone"><a href="tel:01492623820">01492 623820</a></div>
+                        <div class="venue-hours">Wed–Sat 6pm–9:30pm only</div>
+                        <div class="venue-note">Excellent authentic home-cooking. Small, book ahead. ~£15–20/head. No pizza — proper regional Italian. Highly recommended.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="local-subsection">
+                <div class="local-subsection-title">Takeaways & Delivery</div>
+                <div class="venue-grid">
+                    <div class="venue-card featured">
+                        <div class="venue-header">
+                            <div class="venue-name">Johnny Dough's</div>
+                            <div class="venue-star">★</div>
+                        </div>
+                        <div class="venue-type">Wood-fired pizza</div>
+                        <div class="venue-details">Sheffield House, Bangor Road, LL34 6DA</div>
+                        <div class="venue-phone"><a href="tel:01492623661">01492 623661</a></div>
+                        <div class="venue-note">Best quality option. Vegan cheese & GF bases available. ~£15/pizza. Dine-in or takeaway.</div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Happy House</div>
+                        <div class="venue-type">Chinese takeaway</div>
+                        <div class="venue-details">Richmond House, Brynmor Terrace</div>
+                        <div class="venue-phone"><a href="tel:01492623010">01492 623010</a></div>
+                        <div class="venue-note">Local favourite. Delivery available.</div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Dino's</div>
+                        <div class="venue-type">Pizza · Kebabs · Burgers</div>
+                        <div class="venue-details">3 Pant yr Afon, LL34 6BY</div>
+                        <div class="venue-phone"><a href="tel:01492339703">01492 339703</a></div>
+                        <div class="venue-note">Reliable, delivers. Mixed reviews but generous portions.</div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Stella House</div>
+                        <div class="venue-type">Fish & Chips</div>
+                        <div class="venue-details">Bangor Road, LL34 6AF</div>
+                        <div class="venue-phone"><a href="tel:01492623120">01492 623120</a></div>
+                        <div class="venue-note">Traditional chippy.</div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Llandudno Grill</div>
+                        <div class="venue-type">Pizza · Kebabs</div>
+                        <div class="venue-details">2 Westminster Building, Pant yr Afon, LL34 6BY</div>
+                        <div class="venue-note">Alternative to Dino's.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="local-subsection">
+                <div class="local-subsection-title">Useful Services</div>
+                <div class="venue-grid">
+                    <div class="venue-card">
+                        <div class="venue-name">Gwynan Edwards Pharmacy</div>
+                        <div class="venue-details">Medical Hall, Pant yr Afon, LL34 6BY</div>
+                        <div class="venue-phone"><a href="tel:01492622341">01492 622341</a></div>
+                    </div>
+                    <div class="venue-card">
+                        <div class="venue-name">Delivery Apps</div>
+                        <div class="venue-note">Just Eat and Foodhub both cover Penmaenmawr (LL34). Search by postcode for current options.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="local-subsection">
+                <div class="local-subsection-title">Notes for Solo Practice</div>
+                <div class="tip-box">
+                    <div class="tip-box-title">Suggested approach</div>
+                    <p>Stock up at Co-op for simple breakfast/lunch supplies (fruit, bread, cheese, etc). Use the walk as mindful walking practice. For dinner, order takeaway delivery to maintain silence, or break practice briefly to collect from town.</p>
+                </div>
+                <div class="info-grid" style="margin-top: 16px;">
+                    <div class="info-card">
+                        <div class="info-card-title">Sunday Evening</div>
+                        <p><strong>Ti Amo</strong> is open (your first solo night)</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-title">Monday Dinner</div>
+                        <p>Ti Amo closed. Takeaway delivery: <strong>Happy House</strong>, <strong>Johnny Dough's</strong>, or <strong>Dino's</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="local-subsection">
+                <div class="local-subsection-title">Noddfa Contact & Directions</div>
+                <div class="contact-grid">
+                    <div class="contact-block">
+                        <p><strong>Address:</strong> Noddfa, Conwy Old Road, Penmaenmawr, LL34 6YF</p>
+                        <p><strong>Phone:</strong> <a href="tel:01492623473">01492 623473</a></p>
+                        <p><strong>Station pickup:</strong> Sisters offer collection from Penmaenmawr station — call ahead.</p>
+                    </div>
+                    <div class="contact-block">
+                        <p><strong>By car:</strong> Exit 16 off A55, follow signs for Penmaenmawr. At Mountain View, sharp left into Conwy Old Road. Continue ½ mile — entrance on right opposite Tan-y-Foel cemetery.</p>
+                        <p><strong>Note:</strong> Sat nav / Google Maps may be inaccurate — follow these directions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p>Noddfa Spirituality Centre · <a href="tel:01492623473">01492 623473</a></p>
         <p style="margin-top: 8px;">6 days · BZR + Solo Sesshin · December 2025</p>
@@ -1241,7 +1611,7 @@
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            const sectionIds = ['hero', 'outbound', 'thu', 'fri', 'sat', 'sun', 'mon', 'tue'];
+            const sectionIds = ['hero', 'outbound', 'thu', 'fri', 'sat', 'sun', 'mon', 'tue', 'local'];
             const currentSection = Array.from(sections).find(s => {
                 const rect = s.getBoundingClientRect();
                 return rect.top <= 100 && rect.bottom > 100;
